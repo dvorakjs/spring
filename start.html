@@ -1,0 +1,44 @@
+<pre>
+    2024년 01월 19일(RESTful Web Service)
+    https://spring.io/guides/gs/rest-service/#scratch
+
+    1.생성
+        - https://start.spring.io/
+        - Spring boot version: 3.1.7
+        - Dependencies: spring web, Thymeleaf
+
+    2. Resource Representation Class 생성
+        -생성된 web service는 /greeting에 대한 GET request 처리
+         --name parameter가 query sting으로 전달됨
+        -GET request는 "200 OK" 응답을 body에 넣어 보내야함
+        {
+            "id": 1, // greeting에 대한 id
+            "content": "Hello World" //greeting의 문자 표현
+        }
+        -src/main/java/***/***/***/Greeting.java 생성
+        -Java Record
+         -- 상용구를 줄이는 것을 목표로 하는 특별한 형태의 클래스 선언방법
+         -- 일반적인 클래스와 다르게 선언과 함께 필(컴포넌트)를 나열
+         -- 상속 불가능(final class)
+         -- 필드 private final 처리및 setter 미구현을 통한 불변성 제공
+         -- Getter 구현됨
+         -- equals() 구현됨
+         -- hashCode() 구현됨
+         -- toString() 구현됨
+        -Jackson JSON 사용
+        -HTTP request는 controller에 의해 처리됨
+         --@RestController
+        -AtomicLong
+         --Long 자료형을 갖고 있는 Wrapping 클래스
+         --자동 증가
+         --멀티쓰레드에서 synchronized 없이 사용 가능
+        -@GetMapping: request mapping for GET
+         --@RequestMapping(method=GET)
+        -@RequestParam: query string의 파라미터를 method의 파라미터로 매핑
+        -@RestController는 해당 클래스를 controller를 지정, 이 클래스의 method들은 domain object를 반환
+         -- @Controller + @ResponseBody
+        -Object return은 Http message converter(MappingJackson2HttpMessageConverter)에 의해 jason 형태로 HTTP response에 넣어짐
+
+
+
+</pre>
