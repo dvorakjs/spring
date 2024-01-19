@@ -1,5 +1,6 @@
 <pre>
-    2024년 01월 19일(RESTful Web Service)
+2024년 01월 19일
+*RESTful Web Service*
     https://spring.io/guides/gs/rest-service/#scratch
 
     1.생성
@@ -38,6 +39,48 @@
         -@RestController는 해당 클래스를 controller를 지정, 이 클래스의 method들은 domain object를 반환
          -- @Controller + @ResponseBody
         -Object return은 Http message converter(MappingJackson2HttpMessageConverter)에 의해 jason 형태로 HTTP response에 넣어짐
+    
+    3. Run
+        -@SpringBootApplication: 다음 annotation을 다 합한 것과 같음
+        --@Configration: 클래스를 bean definition source로 지정
+        --@EnableAutoConfigration: Spring Boot에게 classpath 기준으로 bean과 다양한 세팅을 추가하라고 함
+        --@ComponentScan: Spring에게 다른 컴포넌트와 환경설정, 서비스를 찾게하여 결국 controller을 찾음
+    
+    4. 실행 가능한 JAR 파일 생성
+        -필요한 Dependencies, class, resource를 포함한 JAR 파일 생성
+        -Gradle을 사용하면 ./gradlew build 로 생성
+          --buld 폴더 안에 libs폴더가 생성되며 그 안에 jar 파일이 생성됨 
+          --java -jar build/libs/****.jar 로 실행
+        -Maven을 사용하면 ./mvnw clean package로 생성
+         --java -jar ****.jar로 실행
+
+*RESTful Web Service*
+    #Spring Data JPA 또는 Spring JDBC를 사용하여 DB에 연결
+    1. 생성
+       -start.spring.io에서 Dependencies에서 Spring Web, Spring Data JPA, H2 Driver 선택
+    2. src/main/resources/application.properties에 첨가
+        spring.jpa.hibernate.ddl-auto=update
+        spring.datasource.url=jdbc:h2:tcp://localhost/~/test
+        spring.datasource.username=sa
+        spring.datasource.password=
+        spring.datasource.driver-class-name=org.h2.Driver
+    3. @Entity model 생성
+       -src/main/java/com/example/***/User.java
+       -DB의 필드가 private field가 되고 getter, setter 생성
+        import jakarta.persistence.Entity;
+        import jakarta.persistence.GeneratedValue;
+        import jakarta.persistence.GenerationType;
+        import jakarta.persistence.Id;
+    
+    4. Repository 생성
+      -import org.springframework.data.repository.CrudRepository
+      -public interface  SensorRepository extends CrudRepository<Sensor, Integer>
+      -Spring이 자동으로 repository interface를 구현(sensorRepository)
+
+    5. Controller 생성
+     
+    
+      
 
 
 
