@@ -5,15 +5,25 @@
 
 
     1. data를 담고 있는 domain class     
-      - Record class
+      - Record class: Quote(String type, Value value), Value(Long id, String quote)
       - @JsonIgnoreProperties: 해당 타입에 해당하지 않는 속성들은 무시
-
+    2. main 함수에 넣을 것
+      - Logger
+      - Jackson JSON 처리 라이브러리를 사용하여 incomming data를 처리하는 RestTemplate
+      - RestTemplate을 작동시키는 CommandLineRunner
       
+      @Profile annotation
+      환경에 따라 다르게 동작해야 하는 경우 사용
+      1) 로컬에서 애플리케이션을 실행할 때
+      2) 테스트를 실행할 때
+      3) 실제 운영을 위해 배포할 때
+  
+      RestTemplate
+      Rest 방식 API를 호출할 수 있는 Spring 내장 클래스 
 
 
 
 
-https://spring.io/guides/gs/consuming-rest
 
 
 </pre>
