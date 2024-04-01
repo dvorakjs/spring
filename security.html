@@ -1,0 +1,20 @@
+<pre>
+    스프링 부트 3.2.2 버전을 사용하고, 스프링 시큐리티 6.2.1 버전
+
+    1. 사용자 id, pw는 HTTPServletRequest로 전달
+    2. AthenticationFilter가 id, pw 검사
+    3. UsernamePasswordAuthenticationToken을 생성 AuthenticationManager에게 전달
+    4. UsernamePasswordAuthenticationToken을 AuthenticationProvider에게 전달
+    5. 사용자 아이디를 UserDetailsService에 보냄
+    6. UserDetailsService는 아이디로 찾은 사용자 정보를 UserDetials 객체로 만들어 AuthenticationProvider에게 전달
+    7. 입력 정보와 UserDetails의 정보를 비교, 인증 처리
+    8. 인증이 완료되면 SecurityContextHolder에 Authentication을 저장
+    9. 인증 성공 시 AuthenticationSuccessHandler, 실패 시 AuthenticationFailureHandler 핸들러 실행     
+
+    csrf(Cross site Request forgery)
+    bcrypt: 암호화할 때 해시 알고리즘인 SHA-256 사용
+
+    SecurityConfig 클래스 작성
+        SecurityFilterChain을 Bean에 등록
+
+</pre>
