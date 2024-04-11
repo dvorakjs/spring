@@ -1,0 +1,33 @@
+*JWT(JSON Web Token)
+ Claim Token 방식
+ Client의 Session 상태를 저장하는 것이 아닌 필요한 정보를 Token body에 저장, Client에 저장해 두고 증명서처럼 사용
+
+    1. Claim based
+       Claim: 사용자에 대한 Property/attribute
+       Self-Contained: 자체 포함, 즉 Token 자체가 정보
+    2. 구성
+       {header}{payload}{verify signature}
+       3가지 정보를 "." 으로 연결
+
+
+*Spring Security + JWT 작동원리
+1. Client에서 Server로 ID/PW로 Login
+2. Sever에서 검증 과정을 거쳐 해당 유저가 존재하면, Access Token + Refresh Token 발급
+  - Access Token과 Refresh Token은 Application에서 Authentication 및 Authorization 관리를 위해 사용
+3. Client는 해당 요청 헤더에 2번에서 발급받은 Access Token을 포함하여 API를 요청
+
+*Access Token
+ 인증된 사용자가 특정 Resource에 접근할 때 사용되는 Token
+  Client는 Access Token을 사용하여 인증된 사용자의 신원 확인, Service 또는 Resource 접근
+  유효 기간 지나면 Expire
+  만료된 경우, 새로운 Access Token을 얻기 위해 Refresh Token 사용
+
+*Refresh Token
+ Access Token의 갱신을 위해 사용되는 토큰
+  일반적으로 Access Token과 함께 발급
+  Access Token이 만료되면 Refresh Token을 사용하여 새로운 Access Token 발급
+  사용자가 지속적으로 인증 상태를 유지하도록 도와줌
+  보안 상의 이유로 Access Token보다 긴 유효 기간을 가짐
+
+
+
